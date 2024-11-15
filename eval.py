@@ -111,6 +111,9 @@ def evaluate(searcher, voc, sentence, max_length=max_length):
     # Generate response
     tokens, scores = searcher(input_batch, lengths, max_length)
     decoded_words = [voc.index2word[token.item()] for token in tokens]
+
+    # Filter out "EOS" token and any padding
+    decoded_words = [word for word in decoded_words if word != 'EOS']
     return ' '.join(decoded_words)
 
 # Function to interact with the chatbot

@@ -23,7 +23,15 @@ MAX_LENGTH = 10  # Maximum sentence length to consider
 
 
 def indexesFromSentence(voc, sentence):
-    return [voc.word2index[word] for word in sentence.split(' ')] + [EOS_token]
+    indexes = []
+    for word in sentence.split(' '):
+        if word in voc.word2index:
+            indexes.append(voc.word2index[word])
+        else:
+            indexes.append(voc.word2index.get('<UNK>', 0))  # Use <UNK> token if available, or 0 if not
+    indexes.append(EOS_token)
+    return indexes
+    # return [voc.word2index[word] for word in sentence.split(' ')] + [EOS_token]
 
 
 def zeroPadding(l, fillvalue=PAD_token):
