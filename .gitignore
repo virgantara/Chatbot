@@ -1,0 +1,13 @@
+checkpoints/**
+data/**
+dataset/**
+.idea/**
+log/**
+__pycache__/**
+*.h5
+*.csv
+*.xyz
+*.pyc
+*.png
+config.ini
+outputs/**
